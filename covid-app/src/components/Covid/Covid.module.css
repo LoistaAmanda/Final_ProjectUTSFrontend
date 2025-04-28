@@ -1,0 +1,95 @@
+/* Small Screen */
+.container {
+  margin: 1rem;
+  padding: 1rem;
+  color: #fff;
+}
+
+.covid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  background-color: white;
+  max-width: 100%;
+}
+
+.covid__left {
+  margin-bottom: 1rem;
+}
+
+.covid__title {
+  color: #06D6A0;
+  margin-bottom: 1rem;
+  font-size: 2.44rem;
+  font-family: '"Poppins"', sans-serif;
+  font-weight: bold;
+}
+
+.covid__information {
+  color: #118AB2;
+  margin-bottom: 1rem;
+  font-size: 1.59rem;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.covid__description {
+  color: #64748b;
+  margin-bottom: 1rem;
+  text-align: justify;
+  font-family: '"Poppins"', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 500px;
+
+}
+
+.covid__button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #06D6A0;
+  color: #fff;
+  font-family: '"Poppins"', sans-serif;
+  font-weight: bold;
+}
+
+.covid__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 25px;
+  display: flex;
+
+}
+
+/* Medium Screen */
+@media (min-width: 768px) {
+  /*
+   * Nothing TODO Here.
+   * We dont change style Hero. 
+   */
+}
+
+/* Large Screen */
+@media (min-width: 992px) {
+  .container {
+    max-width: 1200px;
+    margin: 3rem auto;
+  }
+
+  .covid {
+    margin: 0 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .covid__left {
+    flex-basis: 40%;
+  }
+
+  .covid__right {
+    flex-basis: 60%;
+  }
+}

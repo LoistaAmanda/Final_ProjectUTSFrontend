@@ -1,0 +1,56 @@
+.tabelContainer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.title {
+  color: #06D6A0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.dataCovid {
+  color: #118ab2;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.tabelWrapper {
+  display: flex;
+  justify-content: center;
+
+}
+
+.tabelProvinsi {
+  border-collapse: collapse;
+  border-width: 5px;
+  min-width: 700px;
+  border: 1px solid #e5e7eb; 
+  font-family: '"Poppins"', sans-serif;
+}
+
+.th,
+.td {
+  padding: 10px 20px;
+  text-align: center;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.th {
+  color: #06D6A0;
+  font-weight: bold;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.td {
+  border-top: 1px solid #e5e7eb; 
+}
+
+.namaProvinsi {
+  color: #06D6A0;
+  font-weight: bold;
+  font-family: '"Poppins"', sans-serif;
+}

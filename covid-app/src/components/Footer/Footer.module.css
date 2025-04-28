@@ -1,0 +1,28 @@
+/* Small Screen */
+.container {
+  background-color: #06D6A0;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  text-align: justify;
+}
+
+.footer__title {
+  margin-bottom: 1rem;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.footer__author {
+  margin-bottom: 1rem;
+  font-family: '"Poppins"', sans-serif;
+  font-display: left;
+}
+
+/* Medium Screen */
+@media (min-width: 768px) {
+}
+
+
+@media (min-width: 992px) {
+
+}

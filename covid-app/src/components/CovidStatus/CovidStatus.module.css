@@ -1,0 +1,58 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f7fafa;
+}
+
+.title {
+    font-size: 2rem;
+    color: #4A4A4A;
+    font-family: '"Poppins"', sans-serif;
+}
+
+.subtitle {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #6A6A6A;
+    font-family: '"Poppins"', sans-serif;
+}
+
+.card {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.status {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    font-family: '"Poppins"', sans-serif;
+}
+
+.status__title {
+    font-size: 1.2rem;
+    color: #333;
+    font-family: '"Poppins"', sans-serif;
+}
+
+.confirmed {
+  color: #06d6a0; 
+  font-size: 24px;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.recovered {
+  color: #118ab2; 
+  font-size: 24px;
+  font-family: '"Poppins"', sans-serif;
+}
+
+.death {
+  color: #ef476f; 
+  font-size: 24px;
+  font-family: '"Poppins"', sans-serif;
+}
