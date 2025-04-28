@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar";
-import Covid from "../../components/Covid/Covid";
+import About from "../../components/About/About";
 import Footer from "../../components/Footer/Footer";
 import Dashboard from "../../components/Dashboard/Dashboard"; 
 
@@ -8,7 +8,7 @@ function Home() {
     <div>
       <Navbar />
       <main>
-        <Covid />
+        <About />
         <Dashboard />{" "}
       </main>
       <Footer />

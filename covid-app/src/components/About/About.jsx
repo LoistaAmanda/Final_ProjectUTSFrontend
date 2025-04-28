@@ -1,7 +1,7 @@
-import styles from "./Covid.module.css"
+import styles from "./About.module.css"
 import image from "../../assets/image/image1.png"
 
-function Covid(){
+function About(){
     return (
       <div className={styles.container}>
         <section className={styles.covid}>
@@ -36,4 +36,4 @@ function Covid(){
     );
 }
 
-export default Covid;
+export default About;
