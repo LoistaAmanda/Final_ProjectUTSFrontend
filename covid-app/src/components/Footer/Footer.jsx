@@ -1,15 +1,40 @@
-import styles from "./Footer.module.css"
+import styled from "styled-components";
 
-function Footer(){
-    return(
-        <div className={styles.container}>
-            <footer className={styles.footer}>
-                <h2 className={styles.footer__title}>Covid ID</h2>
-                <p className={styles.footer__author}>Developed by Loista Amanda Noviar <br>
-                </br>Projek UTS Pemrograman Frontend SE01</p>
-            </footer>
-        </div>
-    );
+// Styled Components
+const Container = styled.div`
+  background-color: #06d6a0;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  text-align: justify;
+`;
+
+const FooterWrapper = styled.footer`
+  width: 100%;
+`;
+
+const Title = styled.h2`
+  margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
+`;
+
+const Author = styled.p`
+  margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
+`;
+
+function Footer() {
+  return (
+    <Container>
+      <FooterWrapper>
+        <Title>Covid ID</Title>
+        <Author>
+          Developed by Loista Amanda Noviar <br />
+          Projek UAS Pemrograman Frontend SE01
+        </Author>
+      </FooterWrapper>
+    </Container>
+  );
 }
 
 export default Footer;

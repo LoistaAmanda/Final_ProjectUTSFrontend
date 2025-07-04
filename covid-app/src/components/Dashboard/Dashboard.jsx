@@ -1,29 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import FormCovid from "../FormCovid/FormCovid";
-import TabelProvinsi from "../Tabel/Tabel";
+import TabelGlobal from "../Tabel/Tabel";
 import CovidStatus from "../CovidStatus/CovidStatus";
-import provincesData from "../../utils/constants/provinces";
-import indonesiaData from "../../utils/constants/indonesia";
 
 const Dashboard = () => {
-  const [provinsi, setProvinsi] = useState(provincesData.provinces);
-  const [indonesia, setIndonesia] = useState(indonesiaData.indonesia);
+  const [globalTable, setGlobalTable] = useState([]);
+  const [globalStatus, setGlobalStatus] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const countriesRes = await axios.get(
+          "https://disease.sh/v3/covid-19/countries"
+        );
+        const countryList = countriesRes.data.map((item) => ({
+          country: item.country,
+          cases: item.cases,
+          recovered: item.recovered,
+          active: item.active,
+          deaths: item.deaths,
+        }));
+        setGlobalTable(countryList);
+
+        const globalRes = await axios.get("https://disease.sh/v3/covid-19/all");
+        const summary = [
+          { status: "Positif", total: globalRes.data.cases },
+          { status: "Sembuh", total: globalRes.data.recovered },
+          { status: "Dirawat", total: globalRes.data.active },
+          { status: "Meninggal", total: globalRes.data.deaths },
+        ];
+        setGlobalStatus(summary);
+      } catch (error) {
+        console.error("Gagal mengambil data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = (formData) => {
-    const { provinsi: provinsiNama, status, jumlah } = formData;
+    const { negara: countryName, status, jumlah } = formData;
 
-    // Validasi provinsi
-    const provinsiExist = provincesData.provinces.find(
-      (item) => item.kota.toLowerCase() === provinsiNama.toLowerCase()
-    );
-    if (!provinsiExist) {
-      alert(
-        `Provinsi "${provinsiNama}" tidak ditemukan! Pastikan penulisan benar.`
-      );
-      return;
-    }
-
-    // Validasi status
     const allowedStatus = ["positif", "sembuh", "dirawat", "meninggal"];
     if (!allowedStatus.includes(status.toLowerCase())) {
       alert(
@@ -32,35 +50,48 @@ const Dashboard = () => {
       return;
     }
 
-    // Update data Provinsi (tabel)
-    setProvinsi((prev) =>
-      prev.map((item) =>
-        item.kota.toLowerCase() === provinsiNama.toLowerCase()
-          ? {
-              ...item,
-              kasus:
-                status.toLowerCase() === "positif"
-                  ? item.kasus + Number(jumlah)
-                  : item.kasus,
-              sembuh:
-                status.toLowerCase() === "sembuh"
-                  ? item.sembuh + Number(jumlah)
-                  : item.sembuh,
-              meninggal:
-                status.toLowerCase() === "meninggal"
-                  ? item.meninggal + Number(jumlah)
-                  : item.meninggal,
-              dirawat:
-                status.toLowerCase() === "dirawat"
-                  ? item.dirawat + Number(jumlah)
-                  : item.dirawat,
-            }
-          : item
-      )
+    const isExist = globalTable.find(
+      (item) => item.country.toLowerCase() === countryName.toLowerCase()
     );
 
-    // Update data Indonesia (card)
-    setIndonesia((prev) =>
+    if (!isExist) {
+      const newItem = {
+        country: countryName,
+        cases: status.toLowerCase() === "positif" ? Number(jumlah) : 0,
+        recovered: status.toLowerCase() === "sembuh" ? Number(jumlah) : 0,
+        active: status.toLowerCase() === "dirawat" ? Number(jumlah) : 0,
+        deaths: status.toLowerCase() === "meninggal" ? Number(jumlah) : 0,
+      };
+      setGlobalTable([...globalTable, newItem]);
+    } else {
+      setGlobalTable((prev) =>
+        prev.map((item) =>
+          item.country.toLowerCase() === countryName.toLowerCase()
+            ? {
+                ...item,
+                cases:
+                  status.toLowerCase() === "positif"
+                    ? item.cases + Number(jumlah)
+                    : item.cases,
+                recovered:
+                  status.toLowerCase() === "sembuh"
+                    ? item.recovered + Number(jumlah)
+                    : item.recovered,
+                active:
+                  status.toLowerCase() === "dirawat"
+                    ? item.active + Number(jumlah)
+                    : item.active,
+                deaths:
+                  status.toLowerCase() === "meninggal"
+                    ? item.deaths + Number(jumlah)
+                    : item.deaths,
+              }
+            : item
+        )
+      );
+    }
+
+    setGlobalStatus((prev) =>
       prev.map((item) =>
         item.status.toLowerCase() === status.toLowerCase()
           ? { ...item, total: item.total + Number(jumlah) }
@@ -71,13 +102,8 @@ const Dashboard = () => {
 
   return (
     <div>
-      {/* 1. Covid Status */}
-      <CovidStatus data={indonesia} />
-
-      {/* 2. Tabel Provinsi */}
-      <TabelProvinsi data={provinsi} />
-
-      {/* 3. Form Covid */}
+      <CovidStatus data={globalStatus} />
+      <TabelGlobal data={globalTable} />
       <FormCovid onSubmit={handleSubmit} />
     </div>
   );
